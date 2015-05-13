@@ -6,4 +6,5 @@
     - vars/defaults.yml
   gather_facts: True
   roles:
-   - common
+    - common
+    - nginx
