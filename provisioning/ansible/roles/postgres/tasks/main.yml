@@ -3,6 +3,7 @@
 
 - name: initdb
   command: /usr/pgsql-9.4/bin/postgresql94-setup initdb
+           creates=/var/lib/pgsql/9.4/data/postgresql.conf
 
 - name: start/enable postgres service
   service: name=postgresql-9.4 state=started enabled=yes
