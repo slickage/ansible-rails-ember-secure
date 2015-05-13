@@ -1,0 +1,3 @@
+---
+- name: adding app_user
+  user: name={{app_user}} comment="Application User" uid=1337
