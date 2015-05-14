@@ -6,4 +6,3 @@
   - name: post-receive hook
     template: src=post-receive.j2 dest=/home/{{app_user}}/{{app_user}}.git/hooks/post-receive mode=0755
     sudo_user: "{{app_user}}"
-  
