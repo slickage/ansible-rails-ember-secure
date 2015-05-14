@@ -1,3 +1,5 @@
 ---
 - include: yum.yml
 - include: user.yml
+
+- selinux: policy=targeted state=enforcing

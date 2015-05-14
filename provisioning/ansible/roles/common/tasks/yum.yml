@@ -4,3 +4,6 @@
 
 - name: install the 'Development Tools' package group
   yum: name="@Development Tools" state=present
+
+- name: install policycoreutils-devel for selinux
+  yum: name=policycoreutils-devel state=present
