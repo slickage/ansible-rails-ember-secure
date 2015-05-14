@@ -1,10 +1,17 @@
-- name: rbenv check ruby version
-  shell: cd; bash -lc "rbenv versions | grep {{version_ruby}} | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
-  register: ruby_is_installed
-
-- name: Installs ruby
-  shell: cd; bash -lc "MAKEOPTS={{rbenv_makeopts}} CONFIGURE_OPTS=--disable-install-rdoc rbenv install {{version_ruby}}"
-  when: ruby_is_installed.stdout != version_ruby
-  async: 600
-  poll: 30
-  notify: Sets global ruby version
+---
+  - name: ruby | rbenv check ruby version
+    shell: $SHELL -lc "rbenv versions | grep {{version_ruby}} | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
+    register: ruby_is_installed
+    sudo_user: "{{app_user}}"
+  - name: ruby | install ruby with specified version
+    shell: $SHELL -lc "MAKEOPTS={{rbenv_makeopts}} CONFIGURE_OPTS=--disable-install-rdoc rbenv install {{version_ruby}}"
+    when: ruby_is_installed.stdout != version_ruby
+    async: 600
+    poll: 30
+    sudo_user: "{{app_user}}"
+  - name: ruby | set global ruby version
+    shell: $SHELL -lc "rbenv global {{version_ruby}}"
+    sudo_user: "{{app_user}}"
+  - name: ruby | install bundler
+    shell: $SHELL -lc "gem install bundler"
+    sudo_user: "{{app_user}}"

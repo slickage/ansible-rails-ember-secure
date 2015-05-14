@@ -1,9 +1,12 @@
 ---
 - name: install rbenv for app_user
   git: repo=git://github.com/sstephenson/rbenv.git dest=~{{app_user}}/.rbenv accept_hostkey=yes
+  sudo_user: "{{app_user}}"
 
 - name: create/ensure rbenv plugins directory exists
   file: path=~{{app_user}}/.rbenv/plugins/ owner={{app_user}} group={{app_user}} mode=0755 state=directory
+  sudo_user: "{{app_user}}"
 
 - name: Installs ruby-build
   git: repo=git://github.com/sstephenson/ruby-build.git dest=~{{app_user}}/.rbenv/plugins/ruby-build accept_hostkey=yes
+  sudo_user: "{{app_user}}"

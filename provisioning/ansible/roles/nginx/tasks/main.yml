@@ -1,10 +1,3 @@
 ---
   - include: yum.yml
-  - name: start/enable firewalld service
-    service: name=firewalld state=started enabled=yes
-  - name: firewalld allow http
-    firewalld: service=http immediate=yes permanent=true state=enabled
-  - name: firewalld allow https
-    firewalld: service=https immediate=yes permanent=true state=enabled
-  - name: start/enable nginx service
-    service: name=nginx state=started enabled=yes
+  - include: post_install.yml

@@ -1,0 +1,13 @@
+---
+  - name: start/enable firewalld service
+    service: name=firewalld state=started enabled=yes
+    sudo: yes
+  - name: firewalld allow http
+    firewalld: service=http immediate=yes permanent=true state=enabled
+    sudo: yes
+  - name: firewalld allow https
+    firewalld: service=https immediate=yes permanent=true state=enabled
+    sudo: yes
+  - name: start/enable nginx service
+    service: name=nginx state=started enabled=yes
+    sudo: yes

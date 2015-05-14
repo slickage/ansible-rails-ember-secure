@@ -1,9 +1,16 @@
 ---
 - name: install epel-release
   yum: name=epel-release state=present
+  sudo: yes
 
 - name: install the 'Development Tools' package group
   yum: name="@Development Tools" state=present
+  sudo: yes
 
 - name: install policycoreutils-devel for selinux
   yum: name=policycoreutils-devel state=present
+  sudo: yes
+
+- name: install devel packages for ruby compilation
+  yum: name=readline-devel,zlib-devel,libyaml-devel,libffi-devel,openssl-devel state=present
+  sudo: yes
