@@ -2,4 +2,4 @@
 - include: user.yml
 - include: rbenv.yml
 - include: ruby.yml
-# - include: nvm.yml
+- include: nvm.yml
