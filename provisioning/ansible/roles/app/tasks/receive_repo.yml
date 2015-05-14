@@ -1,4 +1,9 @@
 ---
   - name: create receive git repo
-    shell: $SHELL -lc "git init {{app_user}} --bare"
+    shell: $SHELL -lc "git init {{app_user}}.git --bare"
+           creates=/home/{{app_user}}/{{app_user}}.git
     sudo_user: "{{app_user}}"
+  - name: post-receive hook
+    template: src=post-receive.j2 dest=/home/{{app_user}}/{{app_user}}.git/hooks/post-receive mode=0755
+    sudo_user: "{{app_user}}"
+  

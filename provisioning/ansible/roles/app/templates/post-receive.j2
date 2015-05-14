@@ -6,14 +6,15 @@ do
   timestamp() {
     date +"%Y%m%d%H%M%S"
   }
-  app_wd=/home/deploy/staging.hnl.io
+  app_wd=/home/{{app_user}}/site-{{app_user}}
   shared_wd=$app_wd/shared
   release_wd=$app_wd/releases/$(timestamp)
-  repo_wd=/home/deploy/staging.git
+  repo_wd=/home/{{app_user}}/{{app_user}}.git
   git clone -b $branch $repo_wd $release_wd
-  rm -rf $repo_wd
+  cp $repo_wd/hooks/post-receive /home/{{app_user}}/post-receive
+  rm -rf $repo_wd/*
   git init $repo_wd --bare
-  cp /home/deploy/post-receive $repo_wd/hooks/
+  mv /home/{{app_user}}/post-receive $repo_wd/hooks/
   cd $release_wd
   # rm -rf $release_wd/.git
   rm -rf $release_wd/rails/log
