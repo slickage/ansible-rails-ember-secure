@@ -1,0 +1,4 @@
+---
+  - name: create receive git repo
+    shell: $SHELL -lc "git init {{app_user}} --bare"
+    sudo_user: "{{app_user}}"

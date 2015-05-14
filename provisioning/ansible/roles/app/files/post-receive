@@ -1,0 +1,34 @@
+#!/bin/bash
+while read oldrev newrev refname
+do
+  branch=`echo $refname | cut -d/ -f3`
+  echo "$branch"
+  timestamp() {
+    date +"%Y%m%d%H%M%S"
+  }
+  app_wd=/home/deploy/staging.hnl.io
+  shared_wd=$app_wd/shared
+  release_wd=$app_wd/releases/$(timestamp)
+  repo_wd=/home/deploy/staging.git
+  git clone -b $branch $repo_wd $release_wd
+  rm -rf $repo_wd
+  git init $repo_wd --bare
+  cp /home/deploy/post-receive $repo_wd/hooks/
+  cd $release_wd
+  # rm -rf $release_wd/.git
+  rm -rf $release_wd/rails/log
+  mkdir $release_wd/rails/tmp
+  ln -sfn $shared_wd/log $release_wd/rails/log
+  ln -sfn $shared_wd/sockets $release_wd/rails/tmp/sockets
+  ln -sfn $shared_wd/pids $release_wd/rails/tmp/pids
+  ln -sfn $release_wd $app_wd/current
+  cd $app_wd/current/rails
+  export RAILS_ENV=production
+  bundle install
+  rake db:migrate
+  cd $release_wd/ember
+  npm install && bower install
+  node_modules/.bin/ember build --output-path ../rails/public
+  sudo systemctl restart staging.hnl.io.target
+  sudo systemctl restart nginx
+done
