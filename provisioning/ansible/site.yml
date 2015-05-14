@@ -1,7 +1,6 @@
 ---
 
 - hosts: all
-  sudo: True
   vars_files:
     - vars/defaults.yml
   gather_facts: True
@@ -9,3 +8,4 @@
     - common
     - nginx
     - postgres
+    - app

@@ -1,2 +1,5 @@
 ---
 app_user: rea
+rbenv_makeopts: ""
+version_ruby: 2.2.2
+version_node: 0.12.2

@@ -1,0 +1,10 @@
+- name: rbenv check ruby version
+  shell: cd; bash -lc "rbenv versions | grep {{version_ruby}} | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
+  register: ruby_is_installed
+
+- name: Installs ruby
+  shell: cd; bash -lc "MAKEOPTS={{rbenv_makeopts}} CONFIGURE_OPTS=--disable-install-rdoc rbenv install {{version_ruby}}"
+  when: ruby_is_installed.stdout != version_ruby
+  async: 600
+  poll: 30
+  notify: Sets global ruby version
