@@ -11,7 +11,7 @@ fi
 # User specific aliases and functions
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:/usr/pgsql-9.4/bin/:$PATH"
 eval "$(rbenv init -)"
 
 # nvm

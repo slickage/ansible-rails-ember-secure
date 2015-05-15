@@ -16,7 +16,7 @@ do
   git init $repo_wd --bare
   mv /home/{{app_user}}/post-receive $repo_wd/hooks/
   cd $release_wd
-  # rm -rf $release_wd/.git
+  rm -rf $release_wd/.git
   rm -rf $release_wd/rails/log
   mkdir $release_wd/rails/tmp
   ln -sfn $shared_wd/log $release_wd/rails/log
