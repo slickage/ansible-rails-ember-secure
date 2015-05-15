@@ -12,5 +12,5 @@
     sudo_user: "{{app_user}}"
 
   - name: using .bashrc that starts rbenv and nvm
-    copy: src=.bashrc dest=~{{app_user}}/.bashrc mode=644
+    copy: src=bashrc dest=~{{app_user}}/.bashrc mode=644
     sudo_user: "{{app_user}}"
