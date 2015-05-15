@@ -6,3 +6,9 @@
   - name: start/enable postgres service
     service: name=postgresql-9.4 state=started enabled=yes
     sudo: yes
+  - name: create app user
+    postgresql_user: name={{app_user}} role_attr_flags=CREATEDB,CREATEROLE,SUPERUSER
+    sudo_user: postgres
+  - name: create app user db
+    postgresql_db: name={{app_user}}
+    sudo_user: postgres

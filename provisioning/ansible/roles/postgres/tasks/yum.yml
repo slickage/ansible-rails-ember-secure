@@ -6,3 +6,7 @@
 - name: install postgres packages
   yum: name=postgresql94,postgresql94-devel,postgresql94-server,postgresql94-contrib,postgresql94-libs disablerepo=* enablerepo=pgdg94 state=present
   sudo: yes
+
+- name: install python-psycopg2
+  yum: name=python-psycopg2
+  sudo: yes

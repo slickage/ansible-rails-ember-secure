@@ -1,8 +1,11 @@
 ---
+
   - name: adding app_user
     user: name={{app_user}} comment="Application User" uid=1337
     sudo: yes
-
+  - name: allow sudo for only systemctl
+    lineinfile: "dest=/etc/sudoers state=present regexp='^{{app_user}}' line='{{app_user}} ALL=(ALL)       NOPASSWD: /bin/systemctl'"
+    sudo: yes
   - name: add ssh public key
     authorized_key: user={{app_user}}
       key="{{lookup('file', item)}}"
@@ -10,7 +13,6 @@
     with_fileglob:
       - public_keys/*.pub
     sudo_user: "{{app_user}}"
-
   - name: using .bashrc that starts rbenv and nvm
     copy: src=bashrc dest=~{{app_user}}/.bashrc mode=644
     sudo_user: "{{app_user}}"

@@ -2,12 +2,15 @@
   - name: create deployment dir
     file: path=/home/{{app_user}}/site-{{app_user}} state=directory
     sudo_user: "{{app_user}}"
+  - name: create deployment shared dir
+    file: path=/home/{{app_user}}/site-{{app_user}}/shared state=directory
+    sudo_user: "{{app_user}}"
   - name: create log dir
-    file: path=/home/{{app_user}}/site-{{app_user}}/log state=directory
+    file: path=/home/{{app_user}}/site-{{app_user}}/shared/log state=directory
     sudo_user: "{{app_user}}"
   - name: create pids dir
-    file: path=/home/{{app_user}}/site-{{app_user}}/pids state=directory
+    file: path=/home/{{app_user}}/site-{{app_user}}/shared/pids state=directory
     sudo_user: "{{app_user}}"
   - name: create sockets dir
-    file: path=/home/{{app_user}}/site-{{app_user}}/sockets state=directory
+    file: path=/home/{{app_user}}/site-{{app_user}}/shared/sockets state=directory
     sudo_user: "{{app_user}}"

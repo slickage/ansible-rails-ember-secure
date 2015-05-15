@@ -1,2 +1,13 @@
 ---
-  
+  - name: app.target
+    template: src=app.target.j2 dest=/etc/systemd/system/app-{{app_user}}.target mode=0644
+    sudo: true
+  - name: app-web.target
+    template: src=app-web.target.j2 dest=/etc/systemd/system/app-{{app_user}}-web.target mode=0644
+    sudo: true
+  - name: app-web-1.service
+    template: src=app-web-1.service.j2 dest=/etc/systemd/system/app-{{app_user}}-web-1.service mode=0644
+    sudo: true
+  - name: enable app.target
+    service: name=app-{{app_user}}.target state=started enabled=yes
+    sudo: true
