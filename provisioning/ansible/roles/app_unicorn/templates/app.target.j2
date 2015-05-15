@@ -1,0 +1,6 @@
+[Unit]
+StopWhenUnneeded=true
+Wants=app-{{app_user}}-web.target
+
+[Install]
+WantedBy=multi-user.target

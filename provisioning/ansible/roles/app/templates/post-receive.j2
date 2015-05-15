@@ -30,6 +30,6 @@ do
   cd $release_wd/ember
   npm install && bower install
   node_modules/.bin/ember build --output-path ../rails/public
-  sudo systemctl restart staging.hnl.io.target
+  sudo systemctl restart app-{{app_user}}.target
   sudo systemctl restart nginx
 done
