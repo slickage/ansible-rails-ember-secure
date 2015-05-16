@@ -1,4 +1,7 @@
 ---
+  - name: nginx config
+    template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    sudo: yes
   - name: start/enable firewalld service
     service: name=firewalld state=started enabled=yes
     sudo: yes
@@ -10,4 +13,13 @@
     sudo: yes
   - name: start/enable nginx service
     service: name=nginx state=started enabled=yes
+    sudo: yes
+  - name: add nginx.te to allow unix socket communication via semodule
+    copy: src=nginx.te dest=/tmp/nginx.te mode=644
+    sudo: yes
+  - name: compile nginx.pp
+    shell: $SHELL -lc "cd /tmp; grep nginx /var/log/audit/audit.log | audit2allow -M nginx"
+    sudo: yes
+  - name: install nginx.pp via semodule
+    shell: $SHELL -lc "cd /tmp; semodule -i nginx.pp"
     sudo: yes

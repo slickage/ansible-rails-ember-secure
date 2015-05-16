@@ -1,5 +1,4 @@
 ---
-
   - name: adding app_user
     user: name={{app_user}} comment="Application User" uid=1337
     sudo: yes
@@ -15,4 +14,7 @@
     sudo_user: "{{app_user}}"
   - name: using .bashrc that starts rbenv and nvm
     copy: src=bashrc dest=~{{app_user}}/.bashrc mode=644
+    sudo_user: "{{app_user}}"
+  - name: chmod 711 home to be accessible by nginx
+    file: path=/home/{{app_user}} mode=0711
     sudo_user: "{{app_user}}"
