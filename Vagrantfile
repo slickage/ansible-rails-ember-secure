@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "rea"
 
   config.vm.hostname = 'rea.local'
-  config.vm.network "private_network", ip: "192.168.133.70"
+  config.vm.network "private_network", ip: "192.168.13.37"
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "provisioning/ansible/site.yml"
