@@ -1,1 +1,2 @@
 .vagrant
+provisioning/ansible/roles/app/files/public_keys/*

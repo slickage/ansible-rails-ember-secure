@@ -1,5 +1,5 @@
 ---
-app_user: rea
+app_user: beam
 rbenv_makeopts: ""
 version_ruby: 2.2.2
-version_node: 0.12.2
+version_node: 0.12.4

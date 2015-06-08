@@ -3,5 +3,4 @@
   - include: rbenv.yml
   - include: ruby.yml
   - include: nvm.yml
-  - include: receive_repo.yml
-  - include: deploy_structure.yml
+  # - include: deploy_structure.yml
