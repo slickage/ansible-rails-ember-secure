@@ -1,16 +1,10 @@
 ---
-  - name: app.target
-    template: src=app.target.j2 dest=/etc/systemd/system/app-{{app_user}}.target mode=0644
-    sudo: yes
-  - name: app-web.target
-    template: src=app-web.target.j2 dest=/etc/systemd/system/app-{{app_user}}-web.target mode=0644
-    sudo: yes
   - name: app-web-1.service
-    template: src=app-web-1.service.j2 dest=/etc/systemd/system/app-{{app_user}}-web-1.service mode=0644
+    template: src=app-web-1.service.j2 dest=/etc/systemd/system/rails-{{app_user}}.service mode=0644
     sudo: yes
-  - name: enable app.target
-    service: name=app-{{app_user}}.target state=started enabled=yes
+  - name: enable app-web-1.service
+    service: name=rails-{{app_user}}.service state=started enabled=yes
     sudo: yes
   - name: app nginx config
-    template: src=app.conf.j2 dest=/etc/nginx/conf.d/site-{{app_user}}.conf
+    template: src=app.conf.j2 dest=/etc/nginx/conf.d/rails-{{app_user}}.conf
     sudo: yes

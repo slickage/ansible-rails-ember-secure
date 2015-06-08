@@ -1,6 +1,6 @@
 # The socket here must match the socket path that you set up in unicorn.rb.
 upstream unicorn {
-  server unix:/var/www/{{app_user}}/shared/sockets/unicorn.sock fail_timeout=0;
+  server unix:/var/www/{{app_user}}/shared/tmp/sockets/unicorn.sock fail_timeout=0;
 }
 
 server {
@@ -16,14 +16,10 @@ server {
 
   location / {
     # index  index.html;
-    try_files $uri $uri/ /index.html?/$request_uri;
+    try_files $uri $uri/ /index.html?/$request_uri @unicorn;
   }
 
   location /api {
-    try_files $uri @unicorn;
-  }
-
-  location /users {
     try_files $uri @unicorn;
   }
 
