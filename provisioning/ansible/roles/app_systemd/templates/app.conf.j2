@@ -1,6 +1,6 @@
 # The socket here must match the socket path that you set up in unicorn.rb.
 upstream unicorn {
-  server unix:/home/{{app_user}}/site-{{app_user}}/shared/sockets/unicorn.sock fail_timeout=0;
+  server unix:/var/www/{{app_user}}/shared/tmp/sockets/unicorn.sock fail_timeout=0;
 }
 
 server {
@@ -11,19 +11,15 @@ server {
 
   client_max_body_size 4G;
 
-  root /home/{{app_user}}/site-{{app_user}}/current/rails/public; # Set this to the public folder location of your Rails application.
+  root /var/www/{{app_user}}/current/public; # Set this to the public folder location of your Rails application.
 
 
   location / {
     # index  index.html;
-    try_files $uri $uri/ /index.html?/$request_uri;
+    try_files $uri $uri/ /index.html?/$request_uri @unicorn;
   }
 
   location /api {
-    try_files $uri @unicorn;
-  }
-
-  location /users {
     try_files $uri @unicorn;
   }
 
@@ -42,6 +38,6 @@ server {
   # application's public folder, if you so desire:
   error_page 500 502 503 504 /500.html;
   location = /500.html {
-          root /home/{{app_user}}/site-{{app_user}}/current/rails/public;
+          root /var/www/{{app_user}}/current/public;
   }
 }

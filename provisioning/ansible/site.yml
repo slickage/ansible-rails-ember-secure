@@ -9,4 +9,4 @@
     - nginx
     - postgres
     - app
-    # - app_systemd
+    - app_systemd
