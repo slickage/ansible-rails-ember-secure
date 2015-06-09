@@ -11,3 +11,6 @@
   - name: node | install bower
     shell: $SHELL -lc "npm install -g bower"
     sudo_user: "{{app_user}}"
+  - name: node | install ember-cli
+    shell: $SHELL -lc "npm install -g ember-cli"
+    sudo_user: "{{app_user}}"
