@@ -15,3 +15,6 @@
   - name: ruby | install bundler
     shell: $SHELL -lc "gem install bundler"
     sudo_user: "{{app_user}}"
+  - name: ruby | install sass
+    shell: $SHELL -lc "gem install sass"
+    sudo_user: "{{app_user}}"
