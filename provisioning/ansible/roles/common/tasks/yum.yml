@@ -1,6 +1,6 @@
 ---
 - name: install epel-release
-  yum: name=epel-release state=present
+  yum: name=https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
   sudo: yes
 
 - name: install the 'Development Tools' package group
