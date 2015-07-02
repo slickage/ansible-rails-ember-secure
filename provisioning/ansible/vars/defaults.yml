@@ -1,6 +1,6 @@
 ---
-app_user: beam
+app_user: app
 rbenv_makeopts: ""
 version_ruby: 2.2.2
-version_node: 0.12.4
+version_node: 0.12.5
 secret_key_base: "020221dfb7b05b7b5205b02acb3432e67c6b017113d2dbc44e92c9f4f8af2318142c2ca2f213abc936cad4d56235400744506fc0f896b058273ce77062c8d4ac"
