@@ -8,5 +8,6 @@
     - common
     - nginx
     - postgres
+    - imagemagick
     - app
     - app_systemd

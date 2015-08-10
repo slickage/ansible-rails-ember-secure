@@ -1,0 +1,8 @@
+---
+
+- name: Install ImageMagick
+  yum: pkg={{ item }} state=installed
+  sudo: true
+  with_items:
+    - ImageMagick
+    - ImageMagick-devel
